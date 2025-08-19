@@ -8,20 +8,24 @@
 | -------------------- | ----------- | ---------------- |
 | {baseUrl}/auth/login | `POST`      | application/json |
 
+Request Body
 ```json
-// request body
 {
   "username": "john.doe",
   "password": "12345678"
 }
 ```
 
+Success Response
 ```json
-// success response
 {
-  "access_token": "<access-token>",
-  "token_type": "bearer",
-  "expires_in": 900
+  "success": true,
+  "message": "login berhasil",
+  "data": {
+    "access_token": "<access-token>",
+    "token_type": "bearer",
+    "expires_in": 900
+  }
 }
 ```
 
@@ -35,16 +39,16 @@
 
 Role Access: admin
 
+Request Body
 ```json
-// request body
 {
   "name": "Toko A - Cabang Mampang Prapatan",
   "address": "Mampang Prapatan, Jakarta Selatan"
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Cabang berhasil ditambahkan"
@@ -61,8 +65,8 @@ Query Params: page, size, search
 
 Role Access: admin
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Berhasil mengambil data cabang",
@@ -89,16 +93,16 @@ Role Access: admin
 
 Role Access: admin
 
+Request Body
 ```json
-// request body
 {
   "name": "Toko Mampang Prapatan",
   "address": "Mampang Prapatan, Jakarta Selatan"
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Data cabang berhasil diubah"
@@ -113,8 +117,8 @@ Role Access: admin
 
 Role Access: admin
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Cabang berhasil dihapus"
@@ -131,15 +135,15 @@ Role Access: admin
 
 Role Access: admin
 
+Request Body
 ```json
-// request body
 {
   "name": "Coffee"
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Kategori berhasil ditambahkan"
@@ -156,8 +160,8 @@ Query Params: pageable, page, size, search
 
 Role Access: manager, admin, cashier
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Berhasil mengambil data kategori",
@@ -183,15 +187,15 @@ Role Access: manager, admin, cashier
 
 Role Access: admin
 
+Request Body
 ```json
-// request body
 {
   "name": "Smooties"
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Data kategori berhasil diubah"
@@ -206,8 +210,8 @@ Role Access: admin
 
 Role Access: admin
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Kategori berhasil dihapus"
@@ -224,8 +228,8 @@ Role Access: admin
 
 Role Access: manager, admin
 
+Request Body
 ```json
-// request body
 {
   "category_id": "<uuid>",
   "branch_id": "<uuid>",
@@ -235,8 +239,8 @@ Role Access: manager, admin
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Produk berhasil ditambahkan"
@@ -253,8 +257,8 @@ Query Params: pageable, is_available, category_id, page, size, search
 
 Role Access: manager, admin, cashier
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Berhasil mengambil data produk",
@@ -286,8 +290,8 @@ Role Access: manager, admin, cashier
 
 Role Access: manager, admin
 
+Request Body
 ```json
-// request body
 {
   "category_id": "<uuid>",
   "branch_id": "<uuid>",
@@ -297,8 +301,8 @@ Role Access: manager, admin
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Data produk berhasil diubah"
@@ -313,8 +317,8 @@ Role Access: manager, admin
 
 Role Access: manager, admin
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "produk berhasil dihapus"
@@ -331,8 +335,8 @@ Role Access: manager, admin
 
 Role Access: admin, cashier
 
+Request Body
 ```json
-// request body
 {
   "branch_id": "<uuid>",
   "payment_method": "cash",
@@ -340,15 +344,14 @@ Role Access: admin, cashier
   "details": [
     {
       "product_id": "<uuid>",
-      "quantity": 1,
-      "price": 16000
+      "quantity": 1
     }
   ]
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Pesanan berhasil dibuat",
@@ -387,8 +390,8 @@ Query Params: page, size, start_date, end_date, cashier_id, payment_method
 
 Role Access: admin, manager
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Berhasil mengambil data transaksi detil",
@@ -422,8 +425,8 @@ Query Params: month, year
 
 Role Access: admin, manager
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Berhasil mengambil rekap transaksi harian",
@@ -446,8 +449,8 @@ Query Params: month, year
 
 Role Access: admin, manager
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Berhasil mengambil rekap transaksi mingguan",
@@ -470,8 +473,8 @@ Query Params: year
 
 Role Access: admin, manager
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Berhasil mengambil rekap transaksi bulanan",
@@ -492,8 +495,8 @@ Role Access: admin, manager
 
 Role Access: manager, admin, cashier
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Berhasil mengambil data produk terlaris",
@@ -516,8 +519,8 @@ Role Access: manager, admin, cashier
 
 Role Access: admin
 
+Request Body
 ```json
-// request body
 {
   "name": "John Doe",
   "username": "john.doe",
@@ -526,8 +529,8 @@ Role Access: admin
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "User berhasil dibuat"
@@ -544,6 +547,7 @@ Query Params: page, size, search
 
 Role Access: admin
 
+Success Response
 ```json
 {
   "success": true,
@@ -572,8 +576,8 @@ Role Access: admin
 
 Role Access: admin
 
+Request Body
 ```json
-// request body
 {
   "name": "Jane Doe",
   "username": "jane.doe",
@@ -581,8 +585,8 @@ Role Access: admin
 }
 ```
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "Data user berhasil diubah"
@@ -597,8 +601,8 @@ Role Access: admin
 
 Role Access: admin
 
+Success Response
 ```json
-// success response
 {
   "success": true,
   "message": "User berhasil dihapus"

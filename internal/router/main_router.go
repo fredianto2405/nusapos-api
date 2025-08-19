@@ -1,6 +1,7 @@
 package router
 
 import (
+	"github.com/fredianto2405/nusapos-api/internal/auth"
 	"github.com/fredianto2405/nusapos-api/pkg/errors"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -26,6 +27,13 @@ func SetupRouter(db *sqlx.DB) *gin.Engine {
 
 	// error handler
 	r.Use(errors.ErrorHandler())
+
+	// auth routes
+	authRepo := auth.NewRepository(db)
+	authService := auth.NewService(authRepo)
+	authHandler := auth.NewHandler(authService)
+	authGroup := r.Group("/api/v1/auth")
+	RegisterAuthRoutes(authGroup, authHandler)
 
 	return r
 }
