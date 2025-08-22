@@ -12,6 +12,24 @@
 			"item": [
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"if (response && response.data && response.data.access_token) {\r",
+									"    pm.environment.set(\"accessToken\", response.data.access_token);\r",
+									"    console.log(\"access token saved to environment:\", response.data.access_token);\r",
+									"} else {\r",
+									"    console.error(\"access token not found in response!\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -36,6 +54,150 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Branch Management",
+			"item": [
+				{
+					"name": "Add New Branch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Toko Mampang Prapatan\",\r\n    \"address\": \"Mampang Prapatan, Jakarta Selatan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/branches",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"branches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Branches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/branches?pagination=true&page=1&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"branches"
+							],
+							"query": [
+								{
+									"key": "pagination",
+									"value": "true"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": "tegal",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Branch",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Toko Tegal Parang\",\r\n    \"address\": \"Tegal Parang, Mampang Prapatan, Jakarta Selatan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/branches/11d459eb-a7e2-4288-a1ae-fa955e4c7317",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"branches",
+								"11d459eb-a7e2-4288-a1ae-fa955e4c7317"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Branch",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/branches/11d459eb-a7e2-4288-a1ae-fa955e4c7317",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"branches",
+								"11d459eb-a7e2-4288-a1ae-fa955e4c7317"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{accessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
