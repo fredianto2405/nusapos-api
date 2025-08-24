@@ -1,6 +1,7 @@
 package router
 
 import (
+	"github.com/fredianto2405/nusapos-api/internal/category"
 	"time"
 
 	"github.com/fredianto2405/nusapos-api/internal/auth"
@@ -43,6 +44,13 @@ func SetupRouter(db *sqlx.DB) *gin.Engine {
 	branchHandler := branch.NewHandler(branchService)
 	branchGroup := r.Group("/api/v1/branches")
 	RegisterBranchRoutes(branchGroup, branchHandler)
+
+	// category routes
+	categoryRepo := category.NewRepository(db)
+	categoryService := category.NewService(categoryRepo)
+	categoryHandler := category.NewHandler(categoryService)
+	categoryGroup := r.Group("/api/v1/categories")
+	RegisterCategoryRoutes(categoryGroup, categoryHandler)
 
 	return r
 }
